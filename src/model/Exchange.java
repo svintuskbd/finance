@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class Exchange implements BaseExchangeInterface {
+public class Exchange implements BaseExchangeInterface, FinanceStructureInterface {
     public static final String USD = "usd";
     public static final String EUR = "eur";
+
+    private String name;
+    private String address;
 
     private Map<String, Float> currenciesTo = new HashMap<>();
     private Map<String, Float> currenciesToReverse = new HashMap<>();
@@ -16,14 +19,19 @@ public class Exchange implements BaseExchangeInterface {
     private float courseUahToUsd = 26.8f;
     private float courseUahToEur = 31.0f;
 
-    private void setCurrenciesTo() {
-        this.currenciesTo.put(USD, this.courseUsdToUah);
-        this.currenciesTo.put(EUR, this.courseEurToUah);
+    @Override
+    public String toString() {
+        return "Exchange{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", currenciesTo=" + currenciesTo +
+                ", currenciesToReverse=" + currenciesToReverse +
+                '}';
     }
 
-    private void setCurrenciesToReverse() {
-        this.currenciesToReverse.put(USD, this.courseUahToUsd);
-        this.currenciesToReverse.put(EUR, this.courseUahToEur);
+    public Exchange(String name, String address) {
+        this.name = name;
+        this.address = address;
     }
 
     @Override
@@ -46,5 +54,25 @@ public class Exchange implements BaseExchangeInterface {
                 System.out.println(curr * currency.getValue());
             }
         }
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getAddress() {
+        return address;
+    }
+
+    private void setCurrenciesTo() {
+        this.currenciesTo.put(USD, this.courseUsdToUah);
+        this.currenciesTo.put(EUR, this.courseEurToUah);
+    }
+
+    private void setCurrenciesToReverse() {
+        this.currenciesToReverse.put(USD, this.courseUahToUsd);
+        this.currenciesToReverse.put(EUR, this.courseUahToEur);
     }
 }

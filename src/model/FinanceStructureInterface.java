@@ -4,7 +4,7 @@ public interface FinanceStructureInterface {
     String name = null;
     String address = null;
 
-    void getName();
+    String getName();
 
-    void getAddress();
+    String getAddress();
 }
