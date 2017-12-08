@@ -33,6 +33,7 @@ public class Bank implements
     private int creditLimit = 200_000;
     private int percentYear = 25;
     private int commissionSend = 1;
+    private int termDeposit = 12;
 
     public Bank(String name, String address) {
         this.name = name;
